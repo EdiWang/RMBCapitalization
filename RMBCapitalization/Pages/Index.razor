@@ -17,10 +17,10 @@
                     @Result
                 </h3>
             </div>
-           
+
             <div class="d-flex">
                 <div class="form-group mr-3 w-100">
-                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false"
+                    <input type="text" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false"
                            @bind-value="InputAmount" @bind-value:event="oninput" />
                 </div>
                 <div class="actions text-right">
@@ -32,7 +32,13 @@
         </section>
 
         <section class="keypad d-flex flex-wrap">
-            <button class="btn btn-light key">1</button>
+            @for (int i = 1; i <= 9; i++)
+            {
+                var num = i;
+                <button class="btn btn-light key" @onclick="() => KeyPadClicked(num.ToString())">@i</button>
+            }
+            <button class="btn btn-light key" @onclick='() => KeyPadClicked("0")'>0</button>
+            <button class="btn btn-light key" @onclick='() => KeyPadClicked(".")'>.</button>
         </section>
     </div>
     <div class="col-md-4">
@@ -74,9 +80,45 @@
         {
             _inputAmount = value;
 
-            Result = string.IsNullOrWhiteSpace(value) ?
-                string.Empty :
-                RMBConverter.GetCapitalizedRmb(InputAmount);
+            if (value.Length <= 11)
+            {
+                if (!string.IsNullOrEmpty(value) && value.Contains("."))
+                {
+                    var parts = value.Split('.');
+                    var decPart = parts[1];
+                    if (decPart.Length <= 2)
+                    {
+                        if (value == ".")
+                        {
+                            value = "0.";
+                            _inputAmount = value;
+                        }
+                        else
+                        {
+                            _inputAmount = value;
+                        }
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+
+                // e.g. 01234... format to 1234
+                if (value.StartsWith("0") && !value.Contains("."))
+                {
+                    value = int.Parse(value).ToString();
+                    _inputAmount = value;
+                }
+                else
+                {
+                    _inputAmount = value;
+                }
+
+                Result = string.IsNullOrWhiteSpace(_inputAmount) ?
+                    string.Empty :
+                    RMBConverter.GetCapitalizedRmb(InputAmount);
+            }
         }
     }
 
@@ -103,8 +145,13 @@
         InputAmount = string.Empty;
     }
 
-    private void OnInputValueChanged(string value)
+    private void KeyPadClicked(string value)
     {
-        Console.WriteLine(value);
+        InputAmount += value switch
+        {
+            "0" when InputAmount != "0" => 0,
+            "." when !InputAmount.Contains(".") => ".",
+            _ => value
+            };
     }
 }
