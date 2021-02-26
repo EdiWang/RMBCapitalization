@@ -1,7 +1,7 @@
 ﻿@page "/"
 @inject IJSRuntime JavaScriptRuntime
 
-<h1 class="mt-4">人民币大写转换器</h1>
+<h1 class="mt-4">人民币大写转换器 <small class="text-muted">Blazor WASM</small></h1>
 <hr />
 
 <div class="row">
@@ -12,9 +12,10 @@
                     @Result
                 </h3>
             </div>
-            <div class="actions">
+            <div class="actions mb-4">
                 <button class="btn btn-success" @onclick="CopyResult">复制</button>
-                <button class="btn btn-primary">朗读</button>
+                <button class="btn btn-primary" @onclick="ReadAloud">朗读</button>
+                <button class="btn btn-danger" @onclick="Clear">清除</button>
             </div>
             <div class="input-amount">
                 <div class="form-group">
@@ -75,6 +76,22 @@
 
     private async Task CopyResult()
     {
-        await JavaScriptRuntime.InvokeVoidAsync("clipboardCopy.copyText", Result);
+        if (!string.IsNullOrWhiteSpace(Result))
+        {
+            await JavaScriptRuntime.InvokeVoidAsync("clipboardCopy.copyText", Result);
+        }
+    }
+
+    private async Task ReadAloud()
+    {
+        if (!string.IsNullOrWhiteSpace(Result))
+        {
+            await JavaScriptRuntime.InvokeVoidAsync("", Result);
+        }
+    }
+
+    private void Clear()
+    {
+        InputAmount = string.Empty;
     }
 }
