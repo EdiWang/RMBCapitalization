@@ -19,6 +19,20 @@
         top: 0.5rem;
     }
 
+.actions {
+    min-width: 183px;
+}
+
+.key {
+    font-family: "Consolas";
+    font-size: 300%;
+    width: 120px;
+    height: 120px;
+}
+
+.cap-result {
+    min-height: 75px;
+}
 
 .ref-text-box {
     background: #F2F2F2;

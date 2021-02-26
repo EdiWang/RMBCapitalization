@@ -1,7 +1,12 @@
 ﻿@page "/"
 @inject IJSRuntime JavaScriptRuntime
 
-<h1 class="mt-4">人民币大写转换器 <small class="text-muted">Blazor WASM</small></h1>
+<h1 class="mt-4 text-center">
+    人民币大写转换器
+</h1>
+<div class="text-center">
+    <small class="text-muted">Blazor WASM</small>
+</div>
 <hr />
 
 <div class="row">
@@ -12,20 +17,22 @@
                     @Result
                 </h3>
             </div>
-            <div class="actions mb-4">
-                <button class="btn btn-success" @onclick="CopyResult">复制</button>
-                <button class="btn btn-primary" @onclick="ReadAloud">朗读</button>
-                <button class="btn btn-danger" @onclick="Clear">清除</button>
-            </div>
-            <div class="input-amount">
-                <div class="form-group">
-                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false" 
+           
+            <div class="d-flex">
+                <div class="form-group mr-3 w-100">
+                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false"
                            @bind-value="InputAmount" @bind-value:event="oninput" />
+                </div>
+                <div class="actions text-right">
+                    <button class="btn btn-success" @onclick="CopyResult">复制</button>
+                    <button class="btn btn-primary" @onclick="ReadAloud">朗读</button>
+                    <button class="btn btn-danger" @onclick="Clear">清除</button>
                 </div>
             </div>
         </section>
 
-        <section class="keypad">
+        <section class="keypad d-flex flex-wrap">
+            <button class="btn btn-light key">1</button>
         </section>
     </div>
     <div class="col-md-4">
