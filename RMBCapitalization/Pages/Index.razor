@@ -86,7 +86,7 @@
     {
         if (!string.IsNullOrWhiteSpace(Result))
         {
-            await JavaScriptRuntime.InvokeVoidAsync("", Result);
+            await JavaScriptRuntime.InvokeVoidAsync("readAloud.readText", Result);
         }
     }
 
