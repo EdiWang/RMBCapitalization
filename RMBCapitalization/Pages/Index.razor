@@ -1,5 +1,80 @@
 ﻿@page "/"
+@inject IJSRuntime JavaScriptRuntime
 
-<h1>Hello, world!</h1>
+<h1 class="mt-4">人民币大写转换器</h1>
+<hr />
 
-Welcome to your new app.
+<div class="row">
+    <div class="col-md-8">
+        <section class="screen">
+            <div class="cap-result border bg-light mb-2 p-3">
+                <h3>
+                    @Result
+                </h3>
+            </div>
+            <div class="actions">
+                <button class="btn btn-success" @onclick="CopyResult">复制</button>
+                <button class="btn btn-primary">朗读</button>
+            </div>
+            <div class="input-amount">
+                <div class="form-group">
+                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false" @bind="InputAmount" />
+                </div>
+            </div>
+        </section>
+
+        <section class="keypad">
+        </section>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                参照表
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap">
+                    <div class="ref-text-box"><div class="ref-text-cap">零</div><div class="ref-text-ch">0</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">壹</div><div class="ref-text-ch">1</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">贰</div><div class="ref-text-ch">2</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">叁</div><div class="ref-text-ch">3</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">肆</div><div class="ref-text-ch">4</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">伍</div><div class="ref-text-ch">5</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">陆</div><div class="ref-text-ch">6</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">柒</div><div class="ref-text-ch">7</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">捌</div><div class="ref-text-ch">8</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">玖</div><div class="ref-text-ch">9</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">拾</div><div class="ref-text-ch">10</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">佰</div><div class="ref-text-ch">百</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">仟</div><div class="ref-text-ch">千</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">万</div><div class="ref-text-ch">万</div></div>
+                    <div class="ref-text-box"><div class="ref-text-cap">亿</div><div class="ref-text-ch">亿</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private string _inputAmount;
+
+    public string InputAmount
+    {
+        get => _inputAmount;
+        set
+        {
+            _inputAmount = value;
+
+            Result = string.IsNullOrWhiteSpace(value) ?
+                string.Empty :
+                RMBConverter.GetCapitalizedRmb(InputAmount);
+        }
+    }
+
+    public string Result { get; set; }
+
+    private async Task CopyResult()
+    {
+        await JavaScriptRuntime.InvokeVoidAsync("clipboardCopy.copyText", Result);
+    }
+}
