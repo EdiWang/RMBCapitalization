@@ -1,5 +1,26 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+:root {
+    --transparent-dark-1: rgba(0,0,0,.108);
+    --transparent-dark-2: rgba(0,0,0,.125);
+    --transparent-dark-3: rgba(0,0,0,.132);
+    --transparent-dark-4: rgba(0,0,0,.175);
+    --gray-1: #f2f2f2;
+    --gray-2: #eee;
+}
+
+.box {
+    background-color: var(--white);
+    border: 1px solid var(--gray-2);
+    padding: 1.8rem;
+    box-shadow: 0 1.6px 3.6px 0 var(--transparent-dark-3),0 .3px .9px 0 var(--transparent-dark-1);
+    border-radius: 3px;
+}
+
+body {
+    background: #F2F2F2;
+}
+
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
@@ -18,38 +39,3 @@
         right: 0.75rem;
         top: 0.5rem;
     }
-
-.actions {
-    min-width: 183px;
-}
-
-.key {
-    font-family: "Consolas";
-    font-size: 250%;
-    width: 100%;
-    min-height: 100px;
-    margin-bottom: 10px;
-}
-
-.cap-result {
-    min-height: 75px;
-}
-
-.ref-text-box {
-    background: #F2F2F2;
-    padding: 5px;
-    text-align: center;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    width: 70px;
-    height: 70px;
-    flex-wrap: wrap;
-}
-
-.ref-text-cap {
-    font-size: 125%;
-}
-
-.ref-text-ch {
-    color: #888;
-}

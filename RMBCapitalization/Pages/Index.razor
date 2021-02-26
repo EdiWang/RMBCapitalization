@@ -1,82 +1,89 @@
 ﻿@page "/"
 @inject IJSRuntime JavaScriptRuntime
 
-<h1 class="mt-4 text-center">
-    人民币大写转换器
-</h1>
-<div class="text-center">
-    <small class="text-muted">Blazor WASM</small>
-</div>
-<hr />
 
-<div class="row">
-    <div class="col-md-8">
-        <section class="screen">
-            <div class="cap-result border bg-light mb-2 p-3">
-                <h3>
-                    @Result
-                </h3>
-            </div>
-
-            <div class="d-flex">
-                <div class="form-group mr-3 w-100">
-                    <input type="text" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false"
-                           @bind-value="InputAmount" @bind-value:event="oninput" />
-                </div>
-                <div class="actions text-right">
-                    <button class="btn btn-success" @onclick="CopyResult">复制</button>
-                    <button class="btn btn-primary" @onclick="ReadAloud">朗读</button>
-                    <button class="btn btn-danger" @onclick="Clear">清除</button>
-                </div>
-            </div>
-        </section>
-
-        <section class="keypad">
-            <div class="row">
-                @for (int i = 1; i <= 9; i++)
-                {
-                    var num = i;
-                    <div class="col-4">
-                        <button class="btn btn-light key" @onclick="() => KeyPadClicked(num.ToString())">@i</button>
-                    </div>
-                }
-            </div>
-            <div class="row">
-                <div class="col-8">
-                    <button class="btn btn-light key" @onclick='() => KeyPadClicked("0")'>0</button>
-                </div>
-                <div class="col">
-                    <button class="btn btn-light key" @onclick='() => KeyPadClicked(".")'>.</button>
-                </div>
-            </div>
-        </section>
+<div class="main box mt-4">
+    <h1 class="text-center">
+        人民币大写转换器
+    </h1>
+    <div class="text-center">
+        <small class="text-muted">Blazor WASM / .NET @Environment.Version</small>
     </div>
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                参照表
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-wrap">
-                    <div class="ref-text-box"><div class="ref-text-cap">零</div><div class="ref-text-ch">0</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">壹</div><div class="ref-text-ch">1</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">贰</div><div class="ref-text-ch">2</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">叁</div><div class="ref-text-ch">3</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">肆</div><div class="ref-text-ch">4</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">伍</div><div class="ref-text-ch">5</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">陆</div><div class="ref-text-ch">6</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">柒</div><div class="ref-text-ch">7</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">捌</div><div class="ref-text-ch">8</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">玖</div><div class="ref-text-ch">9</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">拾</div><div class="ref-text-ch">10</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">佰</div><div class="ref-text-ch">百</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">仟</div><div class="ref-text-ch">千</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">万</div><div class="ref-text-ch">万</div></div>
-                    <div class="ref-text-box"><div class="ref-text-cap">亿</div><div class="ref-text-ch">亿</div></div>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-8">
+            <section class="screen">
+                <div class="cap-result border bg-light mb-2 p-3">
+                    <h3>
+                        @Result
+                    </h3>
+                </div>
+
+                <div class="d-flex">
+                    <div class="form-group mr-3 w-100">
+                        <input type="text" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false"
+                               @bind-value="InputAmount" @bind-value:event="oninput" />
+                    </div>
+                    <div class="actions text-right">
+                        <button class="btn btn-success" @onclick="CopyResult">复制</button>
+                        <button class="btn btn-primary" @onclick="ReadAloud">朗读</button>
+                        <button class="btn btn-danger" @onclick="Clear">清除</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="keypad">
+                <div class="row">
+                    @for (int i = 1; i <= 9; i++)
+                    {
+                        var num = i;
+                        <div class="col-4">
+                            <button class="btn btn-light key" @onclick="() => KeyPadClicked(num.ToString())">@i</button>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-8">
+                        <button class="btn btn-light key" @onclick='() => KeyPadClicked("0")'>0</button>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-light key" @onclick='() => KeyPadClicked(".")'>.</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header">
+                    参照表
+                </div>
+                <div class="card-body">
+                    <div class="d-flex flex-wrap">
+                        <div class="ref-text-box"><div class="ref-text-cap">零</div><div class="ref-text-ch">0</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">壹</div><div class="ref-text-ch">1</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">贰</div><div class="ref-text-ch">2</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">叁</div><div class="ref-text-ch">3</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">肆</div><div class="ref-text-ch">4</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">伍</div><div class="ref-text-ch">5</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">陆</div><div class="ref-text-ch">6</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">柒</div><div class="ref-text-ch">7</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">捌</div><div class="ref-text-ch">8</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">玖</div><div class="ref-text-ch">9</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">拾</div><div class="ref-text-ch">10</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">佰</div><div class="ref-text-ch">百</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">仟</div><div class="ref-text-ch">千</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">万</div><div class="ref-text-ch">万</div></div>
+                        <div class="ref-text-box"><div class="ref-text-cap">亿</div><div class="ref-text-ch">亿</div></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="mt-3 text-center">
+    <a href="https://edi.wang" target="_blank">Edi Wang</a>
 </div>
 
 @code {
