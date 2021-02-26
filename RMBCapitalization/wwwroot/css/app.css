@@ -26,9 +26,8 @@
 .key {
     font-family: "Consolas";
     font-size: 250%;
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
+    width: 100%;
+    min-height: 100px;
     margin-bottom: 10px;
 }
 

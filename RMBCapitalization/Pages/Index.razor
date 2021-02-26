@@ -31,14 +31,24 @@
             </div>
         </section>
 
-        <section class="keypad d-flex flex-wrap">
-            @for (int i = 1; i <= 9; i++)
-            {
-                var num = i;
-                <button class="btn btn-light key" @onclick="() => KeyPadClicked(num.ToString())">@i</button>
-            }
-            <button class="btn btn-light key" @onclick='() => KeyPadClicked("0")'>0</button>
-            <button class="btn btn-light key" @onclick='() => KeyPadClicked(".")'>.</button>
+        <section class="keypad">
+            <div class="row">
+                @for (int i = 1; i <= 9; i++)
+                {
+                    var num = i;
+                    <div class="col-4">
+                        <button class="btn btn-light key" @onclick="() => KeyPadClicked(num.ToString())">@i</button>
+                    </div>
+                }
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <button class="btn btn-light key" @onclick='() => KeyPadClicked("0")'>0</button>
+                </div>
+                <div class="col">
+                    <button class="btn btn-light key" @onclick='() => KeyPadClicked(".")'>.</button>
+                </div>
+            </div>
         </section>
     </div>
     <div class="col-md-4">
@@ -152,6 +162,6 @@
             "0" when InputAmount != "0" => 0,
             "." when !InputAmount.Contains(".") => ".",
             _ => value
-            };
+        };
     }
 }
