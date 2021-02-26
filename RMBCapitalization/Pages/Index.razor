@@ -19,7 +19,8 @@
             </div>
             <div class="input-amount">
                 <div class="form-group">
-                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false" @bind="InputAmount" />
+                    <input type="number" class="form-control" placeholder="输入数字金额" id="input-amount-number" spellcheck="false" 
+                           @bind-value="InputAmount" @bind-value:event="oninput" />
                 </div>
             </div>
         </section>
@@ -93,5 +94,10 @@
     private void Clear()
     {
         InputAmount = string.Empty;
+    }
+
+    private void OnInputValueChanged(string value)
+    {
+        Console.WriteLine(value);
     }
 }
