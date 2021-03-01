@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RMBCapitalization
+namespace RMBCap
 {
     // from https://blog.csdn.net/explorerwen/article/details/86434
     public class RMBConverter
