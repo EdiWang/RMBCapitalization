@@ -16,7 +16,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "RMBCapitalization": {
+    "RMBCap": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

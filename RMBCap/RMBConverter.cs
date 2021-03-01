@@ -5,7 +5,7 @@ namespace RMBCap
     // from https://blog.csdn.net/explorerwen/article/details/86434
     public class RMBConverter
     {
-        public static string GetCapitalizedRmb(string input)
+        public static string RMBToCap(string input)
         {
             // Constants: 
             var MAXIMUM_NUMBER = 99999999999.99;

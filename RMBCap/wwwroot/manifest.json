@@ -1,6 +1,6 @@
 {
-  "name": "RMBCapitalization",
-  "short_name": "RMBCapitalization",
+  "name": "人民币大写转换器",
+  "short_name": "人民币大写转换器",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
