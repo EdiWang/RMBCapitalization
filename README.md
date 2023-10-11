@@ -1,5 +1,5 @@
-# ÈËÃñ±Ò´óĞ´×ª»»Æ÷ Blazor WASM
+# äººæ°‘å¸å¤§å†™è½¬æ¢å™¨ Blazor WASM
 
-UWP ËÀµÃºÃ²Ò°¡¡­¡­
+UWP æ­»å¾—å¥½æƒ¨å•Šâ€¦â€¦
 
 ![image](https://raw.githubusercontent.com/EdiWang/RMBCapitalization-Blazor/master/docs/Screenshot_1.png)
