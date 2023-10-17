@@ -15,10 +15,11 @@
 
 <body>
     <div id="app">
-        <div class="text-center mt-4">
-            <img src="yuan.svg" class="mb-4" style="width: 256px;" />
-            <h3>正在加载...</h3>
-        </div>
+        <svg class="loading-progress">
+            <circle r="40%" cx="50%" cy="50%" />
+            <circle r="40%" cx="50%" cy="50%" />
+        </svg>
+        <div class="loading-progress-text"></div>
     </div>
 
     <div id="blazor-error-ui">
