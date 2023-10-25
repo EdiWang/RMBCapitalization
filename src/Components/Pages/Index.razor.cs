@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace RMBCap.Pages;
+namespace RMBCap.Components.Pages;
 
 public partial class Index
 {
