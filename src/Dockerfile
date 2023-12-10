@@ -1,4 +1,8 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+LABEL maintainer="edi.wang@outlook.com"
+
+EXPOSE 8080
+
 WORKDIR /src
 COPY RMBCap.csproj .
 RUN dotnet restore RMBCap.csproj
