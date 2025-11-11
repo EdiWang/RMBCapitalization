@@ -1,0 +1,168 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --surface: #ffffff;
+    --background: #f2f3f5;
+    --text: #1f1f1f;
+    --border: #e1e4e8;
+    --success: #46b450;
+    --info: #2d7dfd;
+    --danger: #d0342c;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background);
+    color: var(--text);
+}
+
+.app {
+    width: min(480px, 92vw);
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 32px 36px 40px;
+    box-shadow: 0 12px 28px rgba(31, 35, 40, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.app__title {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.app__result {
+    min-height: 64px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 20px;
+    line-height: 1.6;
+    display: flex;
+    align-items: center;
+    background: #f9fafb;
+}
+
+.app__controls {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.app__input {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 0 12px;
+    font-size: 16px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.app__input:focus {
+    outline: none;
+    border-color: var(--info);
+    box-shadow: 0 0 0 3px rgba(45, 125, 253, 0.2);
+}
+
+.app__actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn--success {
+    background: var(--success);
+}
+
+.btn--info {
+    background: var(--info);
+}
+
+.btn--danger {
+    background: var(--danger);
+}
+
+.keypad {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.keypad__key {
+    height: 72px;
+    border: none;
+    border-radius: 12px;
+    background: #f5f7fa;
+    font-size: 26px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.keypad__key:hover,
+.keypad__key:focus-visible {
+    background: #e9edf3;
+}
+
+.keypad__key:active {
+    transform: scale(0.96);
+}
+
+.keypad__key--zero {
+    grid-column: span 2;
+}
+
+@media (max-width: 540px) {
+    .app {
+        padding: 24px 20px 32px;
+        gap: 20px;
+    }
+
+    .app__controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .app__actions {
+        justify-content: flex-end;
+    }
+
+    .btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    .keypad__key {
+        height: 64px;
+    }
+}
