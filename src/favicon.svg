@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px" height="800px"><svg height="800px" width="800px" version="1.1" id="SvgjsSvg1002" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve">
+<circle style="fill:#FFDC64;" cx="256" cy="256" r="256"></circle>
+<circle style="fill:#FFC850;" cx="256" cy="256" r="220.69"></circle>
+<circle style="fill:#FFF082;" cx="256" cy="256" r="194.207"></circle>
+<path style="fill:#E7B452;" d="M343.837,148.647c-5.673-4.621-14.001-3.794-18.638,1.863L256,235.086l-69.198-84.577
+	c-4.638-5.655-12.966-6.483-18.638-1.863c-5.655,4.629-6.492,12.974-1.863,18.638l61.752,75.474h-42.674
+	c-7.31,0-13.241,5.931-13.241,13.241c0,7.31,5.931,13.241,13.241,13.241h57.379v17.655h-57.379c-7.31,0-13.241,5.931-13.241,13.241
+	c0,7.31,5.931,13.241,13.241,13.241h57.379v66.207c0,7.31,5.931,13.241,13.241,13.241c7.31,0,13.241-5.931,13.241-13.241v-66.207
+	h57.379c7.31,0,13.241-5.931,13.241-13.241c0-7.31-5.931-13.241-13.241-13.241h-57.379v-17.655h57.379
+	c7.31,0,13.241-5.931,13.241-13.241c0-7.31-5.931-13.241-13.241-13.241h-42.674l61.751-75.474
+	C350.327,161.621,349.492,153.276,343.837,148.647z"></path>
+</svg><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: none; } }
+</style></svg>
