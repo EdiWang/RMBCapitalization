@@ -3,6 +3,8 @@
 ## 简介
 人民币大写转换器是一个纯前端的工具，可将阿拉伯数字金额转换为中文大写金额，并提供复制与朗读等便捷操作。
 
+Demo: https://rmb.edi.wang
+
 ## 功能
 - 数字输入框与屏幕键盘，便于在触控设备上输入金额（见 [src/index.html](src/index.html)）
 - 实时转换与结果展示逻辑（见 [src/main.mjs](src/main.mjs)）
