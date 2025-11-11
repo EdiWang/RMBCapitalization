@@ -45,6 +45,46 @@ function appendValue(char) {
     updateResult();
 }
 
+function removeLastChar() {
+    if (!amountInput.value) return;
+    amountInput.value = amountInput.value.slice(0, -1);
+    updateResult();
+}
+
+function handlePhysicalKey(event) {
+    if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
+
+    const key = event.key;
+
+    if (/^\d$/.test(key)) {
+        event.preventDefault();
+        appendValue(key);
+        amountInput.focus();
+        return;
+    }
+
+    if (key === "." || key === "Decimal") {
+        event.preventDefault();
+        appendValue(".");
+        amountInput.focus();
+        return;
+    }
+
+    if (key === "Backspace") {
+        event.preventDefault();
+        removeLastChar();
+        amountInput.focus();
+        return;
+    }
+
+    if (key === "Escape") {
+        event.preventDefault();
+        amountInput.value = "";
+        setResult("");
+        amountInput.focus();
+    }
+}
+
 amountInput.addEventListener("input", (event) => {
     const cursor = event.target.selectionStart;
     const sanitized = sanitizeInput(event.target.value);
@@ -52,6 +92,8 @@ amountInput.addEventListener("input", (event) => {
     event.target.setSelectionRange(cursor, cursor);
     updateResult();
 });
+
+document.addEventListener("keydown", handlePhysicalKey);
 
 keypad.addEventListener("click", (event) => {
     if (!(event.target instanceof HTMLButtonElement)) return;
