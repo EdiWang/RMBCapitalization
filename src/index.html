@@ -40,6 +40,20 @@
             <button class="keypad__key keypad__key--zero" data-value="0" type="button">0</button>
             <button class="keypad__key" data-value="." type="button">.</button>
         </div>
+        <div class="theme-toggle" role="group" aria-label="主题模式">
+            <button class="theme-toggle__button is-active" type="button" data-theme="system" aria-pressed="true">
+                <span aria-hidden="true">💻</span>
+                <span class="sr-only">跟随系统</span>
+            </button>
+            <button class="theme-toggle__button" type="button" data-theme="light" aria-pressed="false">
+                <span aria-hidden="true">☀️</span>
+                <span class="sr-only">浅色模式</span>
+            </button>
+            <button class="theme-toggle__button" type="button" data-theme="dark" aria-pressed="false">
+                <span aria-hidden="true">🌙</span>
+                <span class="sr-only">深色模式</span>
+            </button>
+        </div>
     </main>
 
     <script type="module" src="./main.mjs"></script>

@@ -7,8 +7,63 @@ const keypad = document.querySelector(".keypad");
 const copyButton = document.querySelector("#copy");
 const speakButton = document.querySelector("#speak");
 const clearButton = document.querySelector("#clear");
+const themeButtons = document.querySelectorAll(".theme-toggle__button");
 
 const ERROR_CLASS = "app__result--error";
+const THEME_STORAGE_KEY = "rmb-cap-theme-preference";
+const systemThemeQuery = window.matchMedia("(prefers-color-scheme: dark)");
+let themePreference = "system";
+
+function loadStoredTheme() {
+    try {
+        return localStorage.getItem(THEME_STORAGE_KEY);
+    } catch {
+        return null;
+    }
+}
+
+function storeTheme(preference) {
+    try {
+        localStorage.setItem(THEME_STORAGE_KEY, preference);
+    } catch {
+        // ignore storage issues
+    }
+}
+
+function applyTheme(preference, { persist = true } = {}) {
+    const nextPreference = ["system", "light", "dark"].includes(preference) ? preference : "system";
+    themePreference = nextPreference;
+    if (nextPreference === "system") {
+        document.documentElement.removeAttribute("data-theme");
+    } else {
+        document.documentElement.setAttribute("data-theme", nextPreference);
+    }
+    document.documentElement.dataset.themePreference = nextPreference;
+    themeButtons.forEach((button) => {
+        const isActive = button.dataset.theme === nextPreference;
+        button.setAttribute("aria-pressed", String(isActive));
+        button.classList.toggle("is-active", isActive);
+    });
+    if (persist) {
+        storeTheme(nextPreference);
+    }
+}
+
+function initThemeControls() {
+    if (!themeButtons.length) return;
+    applyTheme(loadStoredTheme() || "system", { persist: false });
+    themeButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const preference = button.dataset.theme || "system";
+            applyTheme(preference);
+        });
+    });
+    systemThemeQuery.addEventListener("change", () => {
+        if (themePreference === "system") {
+            applyTheme("system", { persist: false });
+        }
+    });
+}
 
 function sanitizeInput(value) {
     const cleaned = value.replace(/[^\d.]/g, "");
@@ -144,4 +199,5 @@ clearButton.addEventListener("click", () => {
     focusAmountInput();
 });
 
+initThemeControls();
 updateResult();
