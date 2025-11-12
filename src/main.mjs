@@ -51,6 +51,31 @@ function removeLastChar() {
     updateResult();
 }
 
+const isCoarsePointer = window.matchMedia("(pointer: coarse)");
+let suppressSystemKeyboard = isCoarsePointer.matches;
+
+const syncKeyboardSuppression = () => {
+    if (suppressSystemKeyboard) {
+        amountInput.setAttribute("readonly", "true");
+        amountInput.setAttribute("inputmode", "none");
+    } else {
+        amountInput.removeAttribute("readonly");
+        amountInput.setAttribute("inputmode", "decimal");
+    }
+};
+
+syncKeyboardSuppression();
+isCoarsePointer.addEventListener("change", (event) => {
+    suppressSystemKeyboard = event.matches;
+    syncKeyboardSuppression();
+});
+
+function focusAmountInput() {
+    if (!suppressSystemKeyboard) {
+        amountInput.focus();
+    }
+}
+
 function handlePhysicalKey(event) {
     if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
 
@@ -59,21 +84,21 @@ function handlePhysicalKey(event) {
     if (/^\d$/.test(key)) {
         event.preventDefault();
         appendValue(key);
-        amountInput.focus();
+        focusAmountInput();
         return;
     }
 
     if (key === "." || key === "Decimal") {
         event.preventDefault();
         appendValue(".");
-        amountInput.focus();
+        focusAmountInput();
         return;
     }
 
     if (key === "Backspace") {
         event.preventDefault();
         removeLastChar();
-        amountInput.focus();
+        focusAmountInput();
         return;
     }
 
@@ -81,7 +106,7 @@ function handlePhysicalKey(event) {
         event.preventDefault();
         amountInput.value = "";
         setResult("");
-        amountInput.focus();
+        focusAmountInput();
     }
 }
 
@@ -100,7 +125,7 @@ keypad.addEventListener("click", (event) => {
     const value = event.target.dataset.value;
     if (!value) return;
     appendValue(value);
-    amountInput.focus();
+    focusAmountInput();
 });
 
 copyButton.addEventListener("click", () => {
@@ -116,7 +141,7 @@ speakButton.addEventListener("click", () => {
 clearButton.addEventListener("click", () => {
     amountInput.value = "";
     setResult("");
-    amountInput.focus();
+    focusAmountInput();
 });
 
 updateResult();
